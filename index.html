@@ -130,6 +130,8 @@ body.light-mode .alert.yw{background:rgba(217,119,6,.06);border-color:rgba(217,1
 body.light-mode .theme-btn{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.2);}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
 @media(max-width:1100px){.kg{grid-template-columns:repeat(3,1fr)}.g2,.g3{grid-template-columns:1fr}.g5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.hdr{padding:14px 16px}.tabs{padding:0 10px}.main{padding:16px 12px}.hdr-in{gap:10px}.logo-t h1{font-size:15px}.logo-b{width:36px;height:36px;font-size:15px}.kg{grid-template-columns:repeat(2,1fr);gap:10px}.g5{grid-template-columns:repeat(2,1fr)}.kv{font-size:18px}.card{padding:14px;overflow-x:auto}.card .tbl{min-width:460px}.bl2{width:92px;font-size:10px}.bv{width:50px}.tab{padding:10px 12px;font-size:11px}.pb{padding:5px 10px;font-size:11px}.filters{gap:4px}.tbl{font-size:11px}.tbl th,.tbl td{padding:7px 8px}.cal-day{font-size:10px}}
+@media(max-width:480px){.kg{grid-template-columns:1fr 1fr}.g5{grid-template-columns:1fr 1fr}.kv{font-size:16px}.kl{font-size:10px}.bl2{width:78px}.main{padding:12px 8px}.card{padding:12px}.logo-t p{font-size:10px}}
 </style>
 </head>
 <body>
@@ -714,7 +716,7 @@ function renderAllOut() {
     tr.innerHTML =
       '<td style="font-size:11px;color:var(--t2);white-space:nowrap">' + (i+1) + '  ' + r.d + '</td>' +
       '<td><span style="color:'+(COC2[r.co]||'var(--t2)')+';font-weight:700;font-size:11px">' + r.co + '</span></td>' +
-      '<td style="font-size:11px;color:var(--t3)">' + r.bank + '</td>' +
+      '<td style="font-size:11px;color:var(--t3)">' + (r.bank||'') + '</td>' +
       '<td>' + badge + '</td>' +
       '<td style="font-size:11px;color:var(--t2);max-width:320px;line-height:1.5">' + r.desc + '</td>' +
       '<td style="font-weight:800;color:var(--rd);font-size:13px">' + NA(r.amt) + '</td>';
@@ -912,7 +914,10 @@ function renderCF() {
 }
 
 function renderLoanBankTable(){
-  var cos=LOAN_BANK.companies,banks=LOAN_BANK.banks,data=LOAN_BANK.data;
+  var cos=LOAN_BANK.companies;
+  var rawd=LOAN_BANK.data, rawb=LOAN_BANK.banks;
+  var data=(rawd && rawd[curP]) ? rawd[curP] : rawd;
+  var banks=(rawb && !Array.isArray(rawb)) ? (rawb[curP]||[]) : (rawb||[]);
   var th=document.getElementById('lb-thead');if(!th)return;
   var hh='<tr><th style="text-align:right;background:var(--s2)">بانک</th>';
   cos.forEach(function(co){hh+='<th style="text-align:center;background:var(--s2);color:'+(COC[co]||'var(--t2)')+'">'+co+'</th>';});
@@ -1039,5 +1044,5 @@ function toggleTheme(){
 
 render();renderCal();renderIssues();initCFDateSelectors();renderCF();
 </script>
-<div style='position:fixed;bottom:10px;left:10px;z-index:99999;background:white;color:#111;padding:6px 10px;border:1px solid #ddd;border-radius:8px;font-family:tahoma;font-size:12px'>آخرین بروزرسانی: 2026-06-15 17:13:30</div></body>
+<div style='position:fixed;bottom:10px;left:10px;z-index:99999;background:white;color:#111;padding:6px 10px;border:1px solid #ddd;border-radius:8px;font-family:tahoma;font-size:12px'>آخرین بروزرسانی: 2026-06-16 09:43:47</div></body>
 </html>
